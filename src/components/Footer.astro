@@ -1,0 +1,26 @@
+---
+import { buildUrl } from '../utils/url';
+---
+
+<footer class="w-full border-t border-border bg-bg text-text-subtle py-12 px-4 sm:px-6 lg:px-8 mt-20">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div class="space-y-2">
+      <div class="flex items-center space-x-2 text-text font-mono font-bold text-sm">
+        <span class="text-text-subtle">&lt;</span>
+        <span>android-ai-skills</span>
+        <span class="text-text-subtle">/&gt;</span>
+      </div>
+      <p class="text-xs text-text-subtle font-mono max-w-md">
+        Production-grade skills catalog encoding senior Android architecture, quality gates, and AI agent engineering discipline.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-6 text-xs font-mono text-text-muted">
+      <a href={buildUrl('/skills/')} class="hover:text-text transition-colors">Skills</a>
+      <a href={buildUrl('/#lifecycle')} class="hover:text-text transition-colors">Lifecycle</a>
+      <a href={buildUrl('/skills/jetpack-compose-ui/')} class="hover:text-text transition-colors">Docs</a>
+      <a href="https://github.com/android-ai-skills/android-ai-skills" target="_blank" rel="noopener noreferrer" class="hover:text-text transition-colors">GitHub ↗</a>
+      <span class="text-text-subtle">MIT License</span>
+    </div>
+  </div>
+</footer>

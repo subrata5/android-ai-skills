@@ -1,0 +1,43 @@
+---
+import { buildUrl } from '../utils/url';
+
+interface SkillLink {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  prevSkill?: SkillLink | null;
+  nextSkill?: SkillLink | null;
+}
+
+const { prevSkill, nextSkill } = Astro.props;
+---
+
+<nav class="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+  {prevSkill ? (
+    <a
+      href={buildUrl(`/skills/${prevSkill.slug}/`)}
+      class="w-full sm:w-auto p-3 rounded-sm border border-border bg-surface hover:bg-surface-hover hover:border-border-hover text-text-muted hover:text-text transition-colors flex items-center space-x-2"
+    >
+      <span>←</span>
+      <div class="text-left">
+        <span class="text-2xs text-text-subtle block">Previous Skill</span>
+        <span class="font-sans font-bold text-text text-xs">{prevSkill.title}</span>
+      </div>
+    </a>
+  ) : <div />}
+
+  {nextSkill ? (
+    <a
+      href={buildUrl(`/skills/${nextSkill.slug}/`)}
+      class="w-full sm:w-auto p-3 rounded-sm border border-border bg-surface hover:bg-surface-hover hover:border-border-hover text-text-muted hover:text-text transition-colors flex items-center space-x-2 text-right justify-end"
+    >
+      <div class="text-right">
+        <span class="text-2xs text-text-subtle block">Next Skill</span>
+        <span class="font-sans font-bold text-text text-xs">{nextSkill.title}</span>
+      </div>
+      <span>→</span>
+    </a>
+  ) : <div />}
+</nav>

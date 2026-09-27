@@ -1,0 +1,79 @@
+---
+import LifecycleStep from './LifecycleStep.astro';
+
+const phases = [
+  {
+    number: '01',
+    title: 'Define',
+    description: 'Clarify intent, problem context, and specification boundaries before starting code implementation.',
+    command: '/spec',
+    exampleSkill: 'Claude Code Agent Workflows',
+    exampleSlug: 'claude-code-agent-prompts',
+  },
+  {
+    number: '02',
+    title: 'Architecture',
+    description: 'Choose strict layer boundaries, dependency directions, and offline schemas before dependencies spread.',
+    command: '/architect',
+    exampleSkill: 'Clean Architecture + MVVM',
+    exampleSlug: 'clean-architecture-mvvm',
+  },
+  {
+    number: '03',
+    title: 'Build',
+    description: 'Implement features in small, verified slices with pure state hoisting and coroutine safety.',
+    command: '/build',
+    exampleSkill: 'Jetpack Compose UI',
+    exampleSlug: 'jetpack-compose-ui',
+  },
+  {
+    number: '04',
+    title: 'Test',
+    description: 'Prove behavior with repeatable JVM unit tests and deterministic Compose semantics rule assertions.',
+    command: '/test',
+    exampleSkill: 'Compose UI Testing',
+    exampleSlug: 'ui-testing-compose-rule',
+  },
+  {
+    number: '05',
+    title: 'Review',
+    description: 'Challenge correctness, leak profiler logs, security vulnerabilities, and accessibility WCAG standards.',
+    command: '/review',
+    exampleSkill: 'Memory Leak Profiling',
+    exampleSlug: 'memory-leak-profiling',
+  },
+  {
+    number: '06',
+    title: 'Ship',
+    description: 'Release safely using CI/CD pipelines, staged Play Store rollouts, telemetry, and kill switches.',
+    command: '/ship',
+    exampleSkill: 'Play Store Staged Rollouts',
+    exampleSlug: 'play-store-staged-rollouts',
+  },
+];
+---
+
+<section id="lifecycle" class="py-16 border-b border-border bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 text-left">
+      <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Lifecycle Organization</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-text mt-1 font-sans">The 6-Phase Android AI Lifecycle</h2>
+      <p class="text-xs sm:text-sm text-text-muted mt-2 font-sans max-w-2xl">
+        Every skill maps directly to an engineering phase. Structured workflow commands keep engineers and AI coding agents aligned on expectations.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {phases.map((phase) => (
+        <LifecycleStep
+          number={phase.number}
+          title={phase.title}
+          description={phase.description}
+          command={phase.command}
+          exampleSkill={phase.exampleSkill}
+          exampleSlug={phase.exampleSlug}
+        />
+      ))}
+    </div>
+  </div>
+</section>

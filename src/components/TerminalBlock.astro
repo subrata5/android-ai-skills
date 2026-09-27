@@ -1,0 +1,57 @@
+---
+interface Props {
+  command: string;
+  label?: string;
+}
+
+const { command, label } = Astro.props;
+---
+
+<div class="rounded-sm border border-border bg-surface font-mono text-xs overflow-hidden my-4">
+  {label && (
+    <div class="border-b border-border bg-surface-raised px-4 py-1.5 text-2xs text-text-subtle flex items-center justify-between">
+      <span>{label}</span>
+      <span class="text-text-subtle font-sans">bash</span>
+    </div>
+  )}
+  <div class="p-3.5 flex items-center justify-between overflow-x-auto gap-4">
+    <div class="flex items-center space-x-2 text-text whitespace-nowrap">
+      <span class="text-text-subtle select-none">$</span>
+      <code class="text-text font-mono select-all">{command}</code>
+    </div>
+    <button
+      type="button"
+      data-copy-cmd={command}
+      class="copy-btn shrink-0 text-2xs text-text-muted hover:text-text border border-border hover:border-border-hover px-2.5 py-1 rounded-sm bg-surface-raised transition-colors focus:outline-none"
+      aria-label="Copy command to clipboard"
+    >
+      Copy
+    </button>
+  </div>
+</div>
+
+<script>
+  function setupCopyButtons() {
+    const buttons = document.querySelectorAll('.copy-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const cmd = btn.getAttribute('data-copy-cmd');
+        if (!cmd) return;
+        try {
+          await navigator.clipboard.writeText(cmd);
+          const originalText = btn.textContent;
+          btn.textContent = 'Copied';
+          btn.classList.add('text-accent');
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove('text-accent');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      });
+    });
+  }
+
+  setupCopyButtons();
+</script>

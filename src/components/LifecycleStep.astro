@@ -1,0 +1,33 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  command: string;
+  exampleSkill: string;
+  exampleSlug: string;
+}
+
+const { number, title, description, command, exampleSkill, exampleSlug } = Astro.props;
+import { buildUrl } from '../utils/url';
+---
+
+<div class="p-5 rounded-sm border border-border bg-surface hover:border-border-hover transition-colors flex flex-col justify-between h-full">
+  <div>
+    <div class="flex items-center justify-between mb-3">
+      <span class="font-mono text-xs font-bold text-text-subtle">{number}</span>
+      <span class="font-mono text-2xs text-text-muted bg-bg border border-border px-2 py-0.5 rounded-sm">
+        {command}
+      </span>
+    </div>
+    <h3 class="text-base font-bold text-text font-sans mb-2">{title}</h3>
+    <p class="text-xs text-text-muted leading-relaxed font-sans mb-4">{description}</p>
+  </div>
+  <div class="pt-3 border-t border-border-subtle">
+    <span class="text-2xs font-mono text-text-subtle block mb-1">Example skill:</span>
+    <a href={buildUrl(`/skills/${exampleSlug}/`)} class="text-xs font-mono text-text hover:underline flex items-center justify-between">
+      <span>{exampleSkill}</span>
+      <span>→</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SearchFilter from '../../components/SearchFilter.astro';
+import SkillGrid from '../../components/SkillGrid.astro';
+import { getCollection } from 'astro:content';
+
+const skills = await getCollection('skills');
+skills.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="The Android + AI Engineering Skill Catalog — 20 Production Skills"
+  description="20 production-oriented skills spanning definition, architecture, implementation, verification, review and release for Android and AI coding agents."
+>
+  <div class="py-12 border-b border-border bg-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="font-mono text-2xs text-text-subtle mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-text transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-text">Skills Catalog</span>
+      </nav>
+
+      <!-- Page Title & Description -->
+      <div class="mb-10 text-left">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-text font-sans tracking-tight mb-3">
+          The Android + AI engineering skill catalog
+        </h1>
+        <p class="text-sm sm:text-base text-text-muted font-sans max-w-3xl leading-relaxed">
+          20 production-oriented skills spanning definition, architecture, implementation, verification, review and release. Each skill includes structured workflow steps, anti-rationalization gates, red flags, verification evidence, and exit criteria.
+        </p>
+      </div>
+
+      <!-- Search & Filters -->
+      <SearchFilter />
+
+      <!-- Skill Grid -->
+      <SkillGrid skills={skills} />
+    </div>
+  </div>
+</Layout>

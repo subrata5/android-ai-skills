@@ -1,0 +1,48 @@
+---
+const specialists = [
+  {
+    badge: 'AA',
+    title: 'Android Architect',
+    description: 'Evaluates architecture layer boundaries, module dependencies, and state flow correctness.',
+  },
+  {
+    badge: 'TE',
+    title: 'Test Engineer',
+    description: 'Evaluates unit test coverage, coroutine determinism, and Compose semantics rule assertions.',
+  },
+  {
+    badge: 'SE',
+    title: 'Security Engineer',
+    description: 'Evaluates encrypted local storage, KeyStore integration, auth token sanitization, and attack surfaces.',
+  },
+  {
+    badge: 'PE',
+    title: 'Performance Engineer',
+    description: 'Evaluates recomposition counts, LeakCanary reports, startup latency, and battery consumption.',
+  },
+];
+---
+
+<section class="py-16 border-b border-border bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10">
+      <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Quality Reviewers</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-text mt-1 font-sans">Specialist Review Personas</h2>
+      <p class="text-xs sm:text-sm text-text-muted mt-2 font-sans max-w-2xl">
+        Each skill incorporates non-negotiable review gates derived from four senior engineering specialist discipline domains.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {specialists.map((spec) => (
+        <div class="p-5 rounded-sm border border-border bg-surface hover:border-border-hover transition-colors">
+          <div class="w-10 h-10 rounded-sm border border-border bg-surface-raised flex items-center justify-center font-mono font-bold text-sm text-text mb-4">
+            {spec.badge}
+          </div>
+          <h3 class="text-sm font-bold text-text font-sans mb-1">{spec.title}</h3>
+          <p class="text-xs text-text-muted leading-relaxed font-sans">{spec.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

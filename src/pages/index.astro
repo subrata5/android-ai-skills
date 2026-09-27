@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Lifecycle from '../components/Lifecycle.astro';
+import SkillGrid from '../components/SkillGrid.astro';
+import SpecialistPanel from '../components/SpecialistPanel.astro';
+import TerminalBlock from '../components/TerminalBlock.astro';
+import { getCollection } from 'astro:content';
+import { buildUrl } from '../utils/url';
+
+// Fetch all 20 skills sorted by phase and order
+const skills = await getCollection('skills');
+skills.sort((a, b) => a.data.order - b.data.order);
+
+const whySections = [
+  {
+    title: 'Anti-Rationalization',
+    subtitle: 'Close the shortcut before it becomes technical debt.',
+    desc: 'Each skill features realistic excuses developers or AI coding agents make under deadline pressure, paired with non-negotiable senior engineer counter-rebuttals.',
+  },
+  {
+    title: 'Verification Gates',
+    subtitle: 'Evidence instead of "it should work".',
+    desc: 'Requires empirical execution proof — passing JVM unit tests, Compose semantics assertions, profiler trace logs, and detekt lint passes before declaring success.',
+  },
+  {
+    title: 'Architecture Discipline',
+    subtitle: 'Make boundaries explicit before code spreads.',
+    desc: 'Enforces strict unidirectional state flow, explicit module dependency directions, domain isolation, and hardware-backed security schemes across feature modules.',
+  },
+  {
+    title: 'AI-Assisted Engineering',
+    subtitle: 'Use coding agents without outsourcing engineering judgment.',
+    desc: 'Equips LLM agents (Claude Code, Copilot, Cursor) with structured system instructions, context boundaries, two-phase planning protocols, and fresh-context verification.',
+  },
+];
+---
+
+<Layout
+  title="Android AI Engineering Skills — Senior Workflows & Quality Gates"
+  description="Catalog of 20 production-grade Android and AI engineering skills encoding senior-engineer workflows, quality gates, architectural discipline, and verification evidence."
+>
+  <!-- HERO -->
+  <Hero />
+
+  <!-- LIFECYCLE -->
+  <Lifecycle />
+
+  <!-- SKILL CATALOG PREVIEW -->
+  <section class="py-16 border-b border-border bg-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Catalog Overview</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text mt-1 font-sans">
+            20 skills across the Android + AI lifecycle
+          </h2>
+          <p class="text-xs sm:text-sm text-text-muted mt-2 font-sans max-w-2xl leading-relaxed">
+            Structured workflows, quality gates, anti-rationalization checks, and exit criteria — not loose prompts.
+          </p>
+        </div>
+        <a
+          href={buildUrl('/skills/')}
+          class="font-mono text-xs text-text hover:text-white border border-border hover:border-border-hover px-4 py-2 rounded-sm bg-surface transition-colors self-start md:self-auto"
+        >
+          View All Skills Catalog →
+        </a>
+      </div>
+
+      <!-- Skill Grid -->
+      <SkillGrid skills={skills} />
+    </div>
+  </section>
+
+  <!-- WHY THESE SKILLS -->
+  <section class="py-16 border-b border-border bg-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-left">
+        <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Core Principles</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text mt-1 font-sans">Why These Skills?</h2>
+        <p class="text-xs sm:text-sm text-text-muted mt-2 font-sans max-w-2xl">
+          Engineered to enforce senior-level rigor across humans and automated coding agents.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {whySections.map((item) => (
+          <div class="p-6 rounded-sm border border-border bg-surface hover:border-border-hover transition-colors">
+            <h3 class="text-base font-bold text-text font-sans mb-1">{item.title}</h3>
+            <div class="font-mono text-xs text-text-subtle mb-3">{item.subtitle}</div>
+            <p class="text-xs text-text-muted leading-relaxed font-sans">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALIST REVIEW -->
+  <SpecialistPanel />
+
+  <!-- FINAL CTA -->
+  <section class="py-20 bg-bg text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="inline-flex items-center space-x-2 px-2.5 py-1 rounded-sm border border-border bg-surface text-2xs font-mono text-text-muted mb-4">
+        <span>AI AGENT INTEGRATION</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-text font-sans tracking-tight mb-4">
+        Give your Android agent senior-engineer instincts.
+      </h2>
+      <p class="text-xs sm:text-sm text-text-muted leading-relaxed font-sans mb-8 max-w-xl mx-auto">
+        Install the full skill pack into your project context to give Claude Code, Cursor, Copilot, or custom agents explicit boundaries, quality gates, and automated test checks.
+      </p>
+
+      <div class="max-w-xl mx-auto text-left mb-8">
+        <TerminalBlock label="CLI Quick Install" command="npx skills add android-ai-engineering-skills" />
+      </div>
+
+      <div class="flex items-center justify-center space-x-4 font-mono text-xs">
+        <a href={buildUrl('/skills/')} class="px-5 py-2.5 rounded-sm bg-text text-bg font-medium hover:bg-white transition-colors">
+          Explore Skill Catalog →
+        </a>
+        <a href="https://github.com/android-ai-skills/android-ai-skills" target="_blank" class="px-5 py-2.5 rounded-sm border border-border bg-surface hover:border-border-hover text-text transition-colors">
+          GitHub Repository ↗
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

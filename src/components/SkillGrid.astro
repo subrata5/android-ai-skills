@@ -1,0 +1,35 @@
+---
+import SkillCard from './SkillCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  skills: CollectionEntry<'skills'>[];
+}
+
+const { skills } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {skills.map((skill) => (
+    <div
+      class="skill-card-wrapper"
+      data-title={skill.data.title.toLowerCase()}
+      data-description={skill.data.description.toLowerCase()}
+      data-slug={skill.id.toLowerCase()}
+      data-phase={skill.data.phase}
+      data-category={skill.data.category}
+      data-tags={skill.data.tags.join(' ').toLowerCase()}
+    >
+      <SkillCard
+        slug={skill.id}
+        title={skill.data.title}
+        description={skill.data.description}
+        phase={skill.data.phase}
+        command={skill.data.command}
+        category={skill.data.category}
+        tags={skill.data.tags}
+        trigger={skill.data.trigger}
+      />
+    </div>
+  ))}
+</div>

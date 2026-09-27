@@ -1,0 +1,27 @@
+---
+const anatomySteps = [
+  { num: '01', title: 'Overview', desc: 'Core purpose, domain impact, and engineering problem addressed.' },
+  { num: '02', title: 'When to Use', desc: 'Explicit trigger conditions and scenario prerequisites.' },
+  { num: '03', title: 'Process', desc: 'Step-by-step technical implementation & architecture rules.' },
+  { num: '04', title: 'Rationalizations', desc: 'Common excuses and senior-engineer counter-rebuttals.' },
+  { num: '05', title: 'Red Flags', desc: 'Failure modes, anti-patterns, and code smells to catch.' },
+  { num: '06', title: 'Verification', desc: 'Mandated evidence requirements and exit criteria checklist.' },
+];
+---
+
+<div class="my-8 p-6 rounded-sm border border-border bg-surface">
+  <div class="mb-4 border-b border-border-subtle pb-3">
+    <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Anatomy</span>
+    <h3 class="text-base font-bold text-text font-sans">How This Skill Is Structured</h3>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+    {anatomySteps.map((step) => (
+      <div class="p-3 rounded-sm border border-border-subtle bg-bg text-left">
+        <span class="font-mono text-xs font-bold text-text-subtle block mb-1">{step.num}</span>
+        <h4 class="text-xs font-bold text-text font-sans mb-1">{step.title}</h4>
+        <p class="text-2xs text-text-muted leading-snug font-sans">{step.desc}</p>
+      </div>
+    ))}
+  </div>
+</div>

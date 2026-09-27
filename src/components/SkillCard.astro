@@ -1,0 +1,63 @@
+---
+import PhaseBadge from './PhaseBadge.astro';
+import TagList from './TagList.astro';
+import { buildUrl } from '../utils/url';
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  phase: string;
+  command: string;
+  category: string;
+  tags: string[];
+  trigger?: string;
+}
+
+const { slug, title, description, phase, command, category, tags, trigger } = Astro.props;
+const skillUrl = buildUrl(`/skills/${slug}/`);
+---
+
+<a
+  href={skillUrl}
+  class="group block p-5 rounded-sm border border-border bg-surface hover:bg-surface-hover hover:border-border-hover transition-all duration-150 flex flex-col justify-between h-full"
+>
+  <div>
+    <!-- Top Metadata -->
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <PhaseBadge phase={phase} />
+      <span class="font-mono text-2xs text-text-subtle group-hover:text-text-muted transition-colors">
+        {command}
+      </span>
+    </div>
+
+    <!-- Title & Slug -->
+    <h3 class="text-base font-bold text-text group-hover:text-text-heading transition-colors mb-1 font-sans">
+      {title}
+    </h3>
+    <div class="font-mono text-2xs text-text-subtle mb-3">
+      /skills/{slug}
+    </div>
+
+    <!-- Description -->
+    <p class="text-xs text-text-muted line-clamp-3 mb-4 leading-relaxed font-sans">
+      {description}
+    </p>
+  </div>
+
+  <div>
+    {trigger && (
+      <div class="text-2xs font-mono text-text-subtle bg-bg p-2 rounded-sm border border-border-subtle mb-3 line-clamp-2">
+        <span class="text-text-muted">Trigger:</span> {trigger}
+      </div>
+    )}
+
+    <!-- Tags & Footer -->
+    <div class="pt-2 border-t border-border-subtle flex items-center justify-between">
+      <TagList tags={tags.slice(0, 3)} />
+      <span class="font-mono text-xs text-text-subtle group-hover:text-text transition-transform group-hover:translate-x-0.5">
+        →
+      </span>
+    </div>
+  </div>
+</a>

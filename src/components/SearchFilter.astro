@@ -1,0 +1,172 @@
+---
+const phases = ['All', 'Define', 'Architecture', 'Build', 'Test', 'Review', 'Ship'];
+const categories = [
+  'All',
+  'UI',
+  'Architecture',
+  'Async',
+  'Data',
+  'AI',
+  'Testing',
+  'Performance',
+  'Security',
+  'CI/CD',
+  'Release',
+  'Accessibility',
+  'Background',
+  'State',
+  'Networking',
+  'Build',
+];
+---
+
+<div class="mb-8 space-y-4">
+  <!-- Search Input & Count -->
+  <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+    <div class="relative flex-1 max-w-xl">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search skills (e.g. compose, room, tdd, hilt)..."
+        aria-label="Search skills"
+        class="w-full px-4 py-2.5 rounded-sm border border-border bg-surface text-text text-sm font-sans placeholder-text-subtle focus:outline-none focus:border-border-hover transition-colors"
+      />
+      <span class="absolute right-3 top-3 font-mono text-2xs text-text-subtle pointer-events-none">/</span>
+    </div>
+    <div class="font-mono text-xs text-text-muted shrink-0">
+      <span id="skill-count" class="font-bold text-text">20</span> skills listed
+    </div>
+  </div>
+
+  <!-- Phase Filters -->
+  <div class="space-y-2">
+    <div class="font-mono text-2xs text-text-subtle uppercase tracking-wider">Filter by Lifecycle Phase:</div>
+    <div class="flex flex-wrap gap-1.5" id="phase-filter-group">
+      {phases.map((phase) => (
+        <button
+          type="button"
+          data-filter-phase={phase}
+          class={`phase-filter-btn px-2.5 py-1 rounded-sm font-mono text-xs border transition-colors ${
+            phase === 'All'
+              ? 'bg-text text-bg border-text font-medium'
+              : 'bg-surface text-text-muted border-border hover:border-border-hover hover:text-text'
+          }`}
+        >
+          {phase}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Category Filters -->
+  <div class="space-y-2 pt-2 border-t border-border-subtle">
+    <div class="font-mono text-2xs text-text-subtle uppercase tracking-wider">Filter by Category:</div>
+    <div class="flex flex-wrap gap-1.5" id="category-filter-group">
+      {categories.map((cat) => (
+        <button
+          type="button"
+          data-filter-category={cat}
+          class={`cat-filter-btn px-2 py-0.5 rounded-sm font-mono text-2xs border transition-colors ${
+            cat === 'All'
+              ? 'bg-surface-raised text-text border-border font-medium'
+              : 'bg-bg text-text-subtle border-border-subtle hover:border-border hover:text-text-muted'
+          }`}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupSearchAndFilters() {
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const phaseBtns = document.querySelectorAll('.phase-filter-btn');
+    const catBtns = document.querySelectorAll('.cat-filter-btn');
+    const cardWrappers = document.querySelectorAll('.skill-card-wrapper');
+    const skillCountEl = document.getElementById('skill-count');
+
+    let activePhase = 'All';
+    let activeCategory = 'All';
+
+    function filterSkills() {
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      let visibleCount = 0;
+
+      cardWrappers.forEach((wrapper) => {
+        const el = wrapper as HTMLElement;
+        const title = el.getAttribute('data-title') || '';
+        const desc = el.getAttribute('data-description') || '';
+        const slug = el.getAttribute('data-slug') || '';
+        const phase = el.getAttribute('data-phase') || '';
+        const category = el.getAttribute('data-category') || '';
+        const tags = el.getAttribute('data-tags') || '';
+
+        const matchesQuery =
+          !query ||
+          title.includes(query) ||
+          desc.includes(query) ||
+          slug.includes(query) ||
+          tags.includes(query) ||
+          category.toLowerCase().includes(query);
+
+        const matchesPhase = activePhase === 'All' || phase.toLowerCase() === activePhase.toLowerCase();
+        const matchesCategory = activeCategory === 'All' || category.toLowerCase() === activeCategory.toLowerCase();
+
+        if (matchesQuery && matchesPhase && matchesCategory) {
+          el.style.display = '';
+          visibleCount++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      if (skillCountEl) {
+        skillCountEl.textContent = `${visibleCount}`;
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', filterSkills);
+    }
+
+    phaseBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        phaseBtns.forEach((b) => {
+          b.classList.remove('bg-text', 'text-bg', 'border-text', 'font-medium');
+          b.classList.add('bg-surface', 'text-text-muted', 'border-border');
+        });
+        btn.classList.remove('bg-surface', 'text-text-muted', 'border-border');
+        btn.classList.add('bg-text', 'text-bg', 'border-text', 'font-medium');
+
+        activePhase = btn.getAttribute('data-filter-phase') || 'All';
+        filterSkills();
+      });
+    });
+
+    catBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        catBtns.forEach((b) => {
+          b.classList.remove('bg-surface-raised', 'text-text', 'font-medium');
+          b.classList.add('bg-bg', 'text-text-subtle');
+        });
+        btn.classList.remove('bg-bg', 'text-text-subtle');
+        btn.classList.add('bg-surface-raised', 'text-text', 'font-medium');
+
+        activeCategory = btn.getAttribute('data-filter-category') || 'All';
+        filterSkills();
+      });
+    });
+
+    // Support '/' shortcut key to focus search box
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        if (searchInput) searchInput.focus();
+      }
+    });
+  }
+
+  setupSearchAndFilters();
+</script>

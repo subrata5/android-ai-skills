@@ -1,0 +1,80 @@
+---
+import { buildUrl } from '../utils/url';
+
+const skillsUrl = buildUrl('/skills/');
+const docsUrl = buildUrl('/skills/jetpack-compose-ui/');
+const homeUrl = buildUrl('/');
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border bg-bg/95 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+    <!-- Brand -->
+    <div class="flex items-center space-x-6">
+      <a href={homeUrl} class="flex items-center space-x-2 text-text font-mono font-bold text-sm tracking-tight hover:text-accent transition-colors">
+        <span class="text-text-subtle">&lt;</span>
+        <span>android-ai-skills</span>
+        <span class="text-text-subtle">/&gt;</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-5 text-xs font-mono text-text-muted" aria-label="Main Navigation">
+        <a href={skillsUrl} class="hover:text-text transition-colors">Skills</a>
+        <a href={docsUrl} class="hover:text-text transition-colors">Docs</a>
+        <a href={buildUrl('/#lifecycle')} class="hover:text-text transition-colors">Lifecycle</a>
+        <a href={buildUrl('/#about')} class="hover:text-text transition-colors">About</a>
+      </nav>
+    </div>
+
+    <!-- Right Actions -->
+    <div class="flex items-center space-x-4">
+      <a
+        href="https://github.com/android-ai-skills/android-ai-skills"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-xs font-mono text-text-muted hover:text-text transition-colors flex items-center space-x-1 border border-border hover:border-border-hover px-2.5 py-1 rounded-sm bg-surface"
+      >
+        <span>GitHub</span>
+        <span class="text-text-subtle">↗</span>
+      </a>
+
+      <!-- Mobile Menu Toggle button -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="md:hidden text-text-muted hover:text-text p-1.5 focus:outline-none"
+        aria-label="Toggle Navigation Menu"
+        aria-expanded="false"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-border bg-surface px-4 py-3 space-y-2 text-sm font-mono">
+    <a href={skillsUrl} class="block py-1 text-text-muted hover:text-text">Skills</a>
+    <a href={docsUrl} class="block py-1 text-text-muted hover:text-text">Docs</a>
+    <a href={buildUrl('/#lifecycle')} class="block py-1 text-text-muted hover:text-text">Lifecycle</a>
+    <a href={buildUrl('/#about')} class="block py-1 text-text-muted hover:text-text">About</a>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        mobileMenu.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>

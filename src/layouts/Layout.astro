@@ -1,0 +1,58 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = 'Android AI Engineering Skills — Senior Workflows & Quality Gates',
+  description = 'Catalog of production-grade Android and AI engineering skills encoding senior-engineer workflows, architectural discipline, quality gates, and verification evidence.',
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const siteName = 'Android AI Engineering Skills';
+const faviconUrl = import.meta.env.BASE_URL + 'favicon.svg';
+---
+
+<!xhtml>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={faviconUrl} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Generator -->
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="bg-bg text-text min-h-screen flex flex-col font-sans selection:bg-surface-raised selection:text-text">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

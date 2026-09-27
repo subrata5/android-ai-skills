@@ -1,0 +1,15 @@
+---
+interface Props {
+  phase: string;
+  size?: 'sm' | 'md';
+}
+
+const { phase, size = 'sm' } = Astro.props;
+
+const sizeClasses = size === 'sm' ? 'px-2 py-0.5 text-2xs' : 'px-2.5 py-1 text-xs';
+---
+
+<span class={`inline-flex items-center font-mono font-medium uppercase tracking-wider rounded-sm border border-border bg-surface-raised text-text-muted ${sizeClasses}`}>
+  <span class="w-1.5 h-1.5 rounded-full bg-text-subtle mr-1.5"></span>
+  {phase}
+</span>

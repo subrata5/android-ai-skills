@@ -1,0 +1,49 @@
+---
+import TerminalBlock from './TerminalBlock.astro';
+import { buildUrl } from '../utils/url';
+
+const browseSkillsUrl = buildUrl('/skills/');
+---
+
+<section class="py-16 md:py-24 border-b border-border bg-bg">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 text-left">
+    <!-- Eyebrow -->
+    <div class="inline-flex items-center space-x-2 px-2.5 py-1 rounded-sm border border-border bg-surface text-2xs font-mono text-text-muted mb-6 tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+      <span>SENIOR ANDROID × AI ENGINEERING</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text tracking-tight leading-tight mb-6 font-sans">
+      Production-grade skills for Android engineers and AI coding agents.
+    </h1>
+
+    <!-- Supporting Text -->
+    <p class="text-sm sm:text-base text-text-muted leading-relaxed font-sans max-w-3xl mb-8">
+      A curated catalog encoding senior-level engineering workflows, architectural decisions, testing discipline, security enforcement, performance profiling, AI-assisted development, and production delivery. Designed to give AI agents and senior developers explicit quality gates, anti-rationalization checks, and verification evidence.
+    </p>
+
+    <!-- Terminal Install Box -->
+    <div class="max-w-2xl mb-8">
+      <TerminalBlock label="Install all skills via CLI" command="npx skills add android-ai-engineering-skills" />
+    </div>
+
+    <!-- CTA Action Buttons -->
+    <div class="flex flex-wrap items-center gap-4 pt-2">
+      <a
+        href={browseSkillsUrl}
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-sm bg-text text-bg font-mono font-medium text-xs hover:bg-white transition-colors"
+      >
+        Browse 20 Skills →
+      </a>
+      <a
+        href="https://github.com/android-ai-skills/android-ai-skills"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-sm border border-border bg-surface hover:border-border-hover text-text font-mono text-xs transition-colors"
+      >
+        GitHub Repository ↗
+      </a>
+    </div>
+  </div>
+</section>
