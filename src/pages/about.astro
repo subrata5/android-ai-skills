@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { buildUrl } from '../utils/url';
+
+const projects = [
+  {
+    title: 'Automotive HMI / Embedded Display Application',
+    category: 'Automotive & Platform',
+    summary: 'Multi-display vehicle HMI and IVI system architecture featuring AIDL IPC, native JNI/NDK layers, multi-zone content sharing, and custom audio routing.',
+    highlights: [
+      'Built reactive automotive UI using Jetpack Compose & MVVM architecture.',
+      'Implemented AIDL-based inter-process communication (IPC) and JNI native layer data callbacks.',
+      'Engineered multi-display content sharing and IVI-to-external screen audio routing.',
+      'Integrated ExoPlayer and optimized UI render pipelines to eliminate overdraw latency.',
+    ],
+    tech: ['Kotlin', 'Jetpack Compose', 'MVVM', 'AIDL', 'JNI', 'NDK', 'AOSP', 'Android Automotive', 'ExoPlayer', 'Audio Routing'],
+  },
+  {
+    title: 'Sony Bravia / Android TV Sensing & AI Feature',
+    category: 'Android TV & Framework',
+    summary: 'Pre-installed TV feature delivering background camera sensing, object detection, ML Kit integration, and hardware-level SELinux security policies.',
+    highlights: [
+      'Integrated Camera2 API operating seamlessly from background Android services.',
+      'Implemented real-time object detection and spatial sensing using ML Kit.',
+      'Configured SEPolicy / SELinux permissions for encrypted model access and system IPC.',
+      'Optimized TV memory footprint for constrained hardware execution.',
+    ],
+    tech: ['Android TV', 'Kotlin', 'Java', 'Camera2', 'AIDL', 'ML Kit', 'SEPolicy', 'Android Services'],
+  },
+  {
+    title: 'OTT / Android TV Media Playback Platform',
+    category: 'Media & Streaming',
+    summary: 'High-performance TV media player supporting multi-engine playback, DLNA local streaming, and low-latency network caching.',
+    highlights: [
+      'Integrated ExoPlayer 3 and custom VLC native playback engines.',
+      'Implemented DLNA closed-network streaming protocol and adaptive HTTP caching.',
+      'Built TV-optimized leanback navigation and media queue controls.',
+    ],
+    tech: ['Android TV', 'Kotlin', 'ExoPlayer 3', 'VLC', 'Retrofit', 'DLNA', 'HTTP Caching'],
+  },
+  {
+    title: 'Voot Kids Interactive Reader SDK',
+    category: 'Consumer Mobile & Media',
+    summary: 'Children’s interactive reading platform featuring ePub rendering, real-time Text-to-Speech (TTS) audio sync, and gesture transitions.',
+    highlights: [
+      'Migrated legacy network stack from Volley to Retrofit & Coroutines.',
+      'Engineered custom ePub rendering engine with read-along TTS word highlighting.',
+      'Implemented gesture-driven page transitions and dictionary SDK integration.',
+    ],
+    tech: ['Android', 'Java', 'Kotlin', 'Retrofit', 'ePub Engine', 'TTS Sync', 'SDK Integration'],
+  },
+];
+
+const coreDimensions = [
+  {
+    badge: '01',
+    title: 'Modern Android Engineering',
+    desc: 'Deep expertise in Kotlin, Jetpack Compose, Clean Architecture, MVVM, Coroutines Flow, Hilt, Room, and high-framerate performance profiling.',
+  },
+  {
+    badge: '02',
+    title: 'Platform & Automotive Engineering',
+    desc: 'Low-level engineering across AOSP, Android Automotive OS, AIDL IPC, JNI/NDK native C++, SELinux, HAL interfaces, and custom system services.',
+  },
+  {
+    badge: '03',
+    title: 'AI Engineering & Developer Productivity',
+    desc: 'Pioneering AI-assisted software development using GitHub Copilot agentic workflows, multi-agent automated review, Ollama local LLMs, and prompt engineering.',
+  },
+  {
+    badge: '04',
+    title: 'Technical Leadership & Mentoring',
+    desc: 'Guiding architectural decisions, establishing quality gates, conducting technical design reviews, and driving team productivity standards.',
+  },
+];
+
+const techStack = [
+  { category: 'Languages', items: ['Kotlin', 'Java', 'C/C++', 'SQL', 'XML', 'TypeScript / JS'] },
+  { category: 'Modern Android', items: ['Jetpack Compose', 'Coroutines & Flow', 'Clean Architecture', 'MVVM', 'Hilt / Dagger', 'Room DB', 'WorkManager'] },
+  { category: 'Platform & System', items: ['AOSP', 'Android Automotive', 'AIDL / HIDL', 'JNI / NDK', 'SELinux / SEPolicy', 'System Services'] },
+  { category: 'Media & Hardware', items: ['ExoPlayer', 'VLC Engine', 'Camera2 API', 'Audio Routing', 'DLNA Streaming', 'Bluetooth A2DP'] },
+  { category: 'Networking & Data', items: ['Retrofit', 'OkHttp Caching', 'EncryptedSharedPreferences', 'Firebase / FCM', 'REST APIs'] },
+  { category: 'AI & Agentic Tools', items: ['GitHub Copilot Agents', 'Claude Code Agent Workflows', 'Local LLMs / Ollama', 'OpenRouter', 'AI Code Review'] },
+  { category: 'Testing & CI/CD', items: ['JUnit 5', 'MockK / Mockito', 'Compose UI Testing', 'Espresso', 'GitHub Actions CI/CD'] },
+];
+---
+
+<Layout
+  title="About Me — Senior Android Engineer, Platform & AI Lead"
+  description="Senior Android Engineer with 9+ years experience across modern Android app development, AOSP, Automotive OS, JNI/NDK, multimedia, and AI-assisted agentic software engineering."
+>
+  <div class="py-12 border-b border-border bg-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="font-mono text-2xs text-text-subtle mb-6" aria-label="Breadcrumb">
+        <a href={buildUrl('/')} class="hover:text-text transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-text font-medium">About</span>
+      </nav>
+
+      <!-- HERO SECTION -->
+      <div class="max-w-4xl mb-16">
+        <div class="inline-flex items-center space-x-2 px-2.5 py-1 rounded-sm border border-border bg-surface text-2xs font-mono text-text-muted mb-4 uppercase tracking-widest">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          <span>SENIOR ANDROID ENGINEER × PLATFORM & AI LEAD</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-text font-sans tracking-tight leading-tight mb-6">
+          Building reliable Android systems & pioneering AI-powered engineering.
+        </h1>
+
+        <p class="text-base sm:text-lg text-text-muted font-sans leading-relaxed mb-6">
+          I am a <strong class="text-text">Senior Android Engineer / Technical Lead</strong> with <strong class="text-text">almost 9 years of hands-on experience</strong> architecting production-grade mobile applications and platform-level solutions across consumer, Android TV, automotive, media, and embedded system environments.
+        </p>
+
+        <!-- Quick Spec Pills -->
+        <div class="flex flex-wrap gap-2 font-mono text-xs">
+          <span class="px-2.5 py-1 rounded-sm border border-border bg-surface text-text">9+ Years Experience</span>
+          <span class="px-2.5 py-1 rounded-sm border border-border bg-surface text-text">Kotlin & Jetpack Compose</span>
+          <span class="px-2.5 py-1 rounded-sm border border-border bg-surface text-text">AOSP & Automotive OS</span>
+          <span class="px-2.5 py-1 rounded-sm border border-border bg-surface text-text">AIDL / JNI / NDK</span>
+          <span class="px-2.5 py-1 rounded-sm border border-border bg-surface text-text">AI Agentic Workflows</span>
+        </div>
+      </div>
+
+      <!-- 4 MAJOR DIMENSIONS -->
+      <section class="my-16">
+        <div class="mb-8">
+          <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Engineering Spectrum</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text font-sans mt-1">Four Major Core Pillars</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {coreDimensions.map((dim) => (
+            <div class="p-6 rounded-sm border border-border bg-surface hover:border-border-hover transition-colors">
+              <span class="font-mono text-xs font-bold text-text-subtle block mb-2">{dim.badge}</span>
+              <h3 class="text-lg font-bold text-text font-sans mb-2">{dim.title}</h3>
+              <p class="text-xs sm:text-sm text-text-muted leading-relaxed font-sans">{dim.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SELECTED PROJECT CASE STUDIES -->
+      <section class="my-16">
+        <div class="mb-8">
+          <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Selected Case Studies</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text font-sans mt-1">Production Project Experience</h2>
+          <p class="text-xs sm:text-sm text-text-muted mt-2 font-sans max-w-2xl">
+            Real-world systems spanning automotive IVI, smart TV sensing, streaming media engines, and interactive applications.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          {projects.map((proj) => (
+            <div class="p-6 rounded-sm border border-border bg-surface hover:border-border-hover transition-colors">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <h3 class="text-lg font-bold text-text font-sans">{proj.title}</h3>
+                <span class="font-mono text-2xs text-text-subtle border border-border px-2 py-0.5 rounded-sm bg-bg self-start sm:self-auto">
+                  {proj.category}
+                </span>
+              </div>
+              
+              <p class="text-xs sm:text-sm text-text-muted leading-relaxed font-sans mb-4">
+                {proj.summary}
+              </p>
+
+              <div class="mb-4 space-y-1.5">
+                <span class="font-mono text-2xs uppercase text-text-subtle block mb-1">Key Contributions:</span>
+                <ul class="list-disc pl-5 text-xs text-text-muted space-y-1 font-sans">
+                  {proj.highlights.map((h) => (
+                    <li>{h}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="pt-3 border-t border-border-subtle flex flex-wrap gap-1.5">
+                {proj.tech.map((t) => (
+                  <span class="font-mono text-2xs text-text-subtle bg-bg border border-border px-2 py-0.5 rounded-sm">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- LEARNING PHILOSOPHY -->
+      <section class="my-16 p-8 rounded-sm border border-border bg-surface">
+        <div class="max-w-3xl">
+          <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Engineering Methodology</span>
+          <h2 class="text-2xl font-bold text-text font-sans mt-1 mb-4">My Learning & Architecture Philosophy</h2>
+          
+          <div class="p-4 rounded-sm border border-border-subtle bg-bg font-mono text-xs text-text mb-6">
+            What it is → Why it exists → How it works internally → When to use it → When NOT to use it → How it behaves in production.
+          </div>
+
+          <p class="text-xs sm:text-sm text-text-muted leading-relaxed font-sans mb-4">
+            For instance, when mastering Kotlin Coroutines, I focus not just on `suspend` syntax, but on internal dispatcher queues, structured concurrency cancellation trees, exception propagation boundaries, and thread-context switching under heavy production load.
+          </p>
+          <p class="text-xs sm:text-sm text-text-muted leading-relaxed font-sans">
+            The same deep engineering principles govern my approach to Clean Architecture, Jetpack Compose recomposition bounds, AOSP HAL integrations, and AI agentic workflows.
+          </p>
+        </div>
+      </section>
+
+      <!-- TECHNICAL STACK MATRIX -->
+      <section class="my-16">
+        <div class="mb-8">
+          <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Skills Breakdown</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text font-sans mt-1">Complete Technology Matrix</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {techStack.map((group) => (
+            <div class="p-5 rounded-sm border border-border bg-surface">
+              <h3 class="font-mono text-xs font-bold text-text uppercase tracking-wider mb-3 pb-2 border-b border-border">
+                {group.category}
+              </h3>
+              <div class="flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span class="font-mono text-2xs text-text-muted bg-bg border border-border-subtle px-2 py-1 rounded-sm">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- CTA & CONTACT -->
+      <section class="mt-20 pt-10 border-t border-border text-center">
+        <div class="max-w-2xl mx-auto">
+          <span class="font-mono text-2xs uppercase tracking-widest text-text-subtle">Connect & Collaborate</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text font-sans mt-1 mb-4">
+            Let's build next-generation Android & AI systems.
+          </h2>
+          <p class="text-xs sm:text-sm text-text-muted font-sans leading-relaxed mb-8">
+            Combining deep mobile engineering knowledge with modern AI capabilities to evolve toward AI-enabled technical leadership.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4 font-mono text-xs">
+            <a
+              href="https://github.com/subrata5"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2.5 rounded-sm bg-text text-bg font-medium hover:bg-white transition-colors"
+            >
+              GitHub Profile ↗
+            </a>
+            <a
+              href={buildUrl('/skills/')}
+              class="px-5 py-2.5 rounded-sm border border-border bg-surface hover:border-border-hover text-text transition-colors"
+            >
+              Explore 20 Skills Catalog →
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Layout>
